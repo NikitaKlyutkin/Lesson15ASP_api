@@ -27,11 +27,10 @@ namespace Lesson15ASP_api
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
-
-            services.AddControllers();
+        { 
             services.Configure<MeetingSettings>(configuration.GetSection("GeneralSetting"));
             services.AddTransient<ServiceMeeting>();
+            services.AddControllers();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Lesson15ASP_api", Version = "v1" });

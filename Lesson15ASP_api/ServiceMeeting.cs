@@ -12,7 +12,7 @@ namespace Lesson15ASP_api
 
         public string GetSettings()
         {
-            return $"MaxPeople:{_settings.MaxPeople} , TimeMeeting {_settings.TimeMeeting}";
+            return $"MaxPeople:{_settings.MaxPeople} , TimeMeetingMin {_settings.TimeMeetingMin}";
         }
     }
 }
