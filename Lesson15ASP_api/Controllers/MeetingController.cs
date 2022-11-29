@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Serilog;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,13 +15,17 @@ namespace Lesson15ASP_api.Controllers
     {
         private readonly MeetingSettings _settings;
         private readonly ILogger<MeetingController> _logger;
-        public MeetingController(IOptions<MeetingSettings> options)
+
+        public MeetingController(IOptions<MeetingSettings> options, ILogger<MeetingController> log)
         {
             _settings = options.Value;
+            _logger = log;
+          
         }
         [HttpGet]
         public IEnumerable<MeetingSettings> Get()
         {
+            _logger.LogInformation("Прочитал файл JSON");
             return Enumerable.Range(1, 1).Select(index => new MeetingSettings
             {
                 DateMeeting = DateTime.Now.AddDays(index),
