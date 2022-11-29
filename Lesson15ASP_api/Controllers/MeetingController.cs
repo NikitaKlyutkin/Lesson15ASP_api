@@ -13,6 +13,7 @@ namespace Lesson15ASP_api.Controllers
     public class MeetingController : ControllerBase
     {
         private readonly MeetingSettings _settings;
+        private readonly ILogger<MeetingController> _logger;
         public MeetingController(IOptions<MeetingSettings> options)
         {
             _settings = options.Value;
@@ -25,18 +26,21 @@ namespace Lesson15ASP_api.Controllers
                 DateMeeting = DateTime.Now.AddDays(index),
                 MaxPeople = _settings.MaxPeople,
                 TimeMeetingMin = _settings.TimeMeetingMin
-            }).ToArray();
+                
+
+        }).ToArray();
+        
         }
 
-        public IActionResult GetAct()
-        {
-            return new ObjectResult(new MeetingSettings
-            {
-                MaxPeople = _settings.MaxPeople,
-                TimeMeetingMin = _settings.TimeMeetingMin,
-                DateMeeting = DateTime.Now.AddDays(0),
+        //public IActionResult GetAct()
+        //{
+        //    return new ObjectResult(new MeetingSettings
+        //    {
+        //        MaxPeople = _settings.MaxPeople,
+        //        TimeMeetingMin = _settings.TimeMeetingMin,
+        //        DateMeeting = DateTime.Now.AddDays(0),
 
-            });
-        }
+        //    });
+        //}
     }
 }
